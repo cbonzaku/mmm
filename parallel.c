@@ -26,7 +26,7 @@ int caculElement(int i,int j){
 void *paral(void *tid){
     
 int id=*(int *)(tid); 
-   
+   nbr=p/n;
 int is =id*nbr;
 int ie = is + nbr;
 
