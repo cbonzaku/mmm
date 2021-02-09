@@ -15,7 +15,7 @@ int mode;
 int main(int argc, char const *argv[])
 {
 
-    clock_t begin,end,begin1,end1;
+    clock_t begin,end,begin1,end1,begin2,end2;
      int n=3;
      int p=3;
      int para=0 ;
@@ -126,8 +126,26 @@ printf("\n \n \t \t A =\n");
        pthread_join(threads[i], NULL);}
        end=clock();
        
+    //hm partie 2
+       begin2=clock();
     
+    // creating threads
+     for(t=0; t<p; t++){
+         
+         *id=t;
+       
+       pthread_create(&threads[t], NULL, paral2, (void *)id);
+      
+       
 
+       
+    }
+     for (int i = 0; i < p; i++){
+       pthread_join(threads[i], NULL);}
+       end2=clock();
+
+	
+	//sequenciel 
     begin1=clock();
        sequenciel(n);
        end1=clock();
@@ -140,6 +158,7 @@ printf("\n \n \t \t A =\n");
 
     printf("\nparallel time is :%f\n",((double) (end - begin)) / CLOCKS_PER_SEC);
     printf("\nseqenciel time is :%f\n",((double) (end1 - begin1)) / CLOCKS_PER_SEC);
+    printf("\nparallel v2 time is :%f\n",((double) (end2 - begin2)) / CLOCKS_PER_SEC);
     
     return 0;
 }
